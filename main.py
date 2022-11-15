@@ -27,5 +27,37 @@ def primes_generator(n):
         next_result=next_result+1
         i=0
     print(resulting_list)
+def input_list():
+    my_input = []
+    str_input = []
+    i=0
+    while str_input != "x":
+        str_input = input("Input your coordinates in pairs:")
+        if str_input != "x":
+            my_input.append(str_input.split(" "))
+            i=i+1
+    return (my_input)
+def orthogonal_number(vectors):
+    pairs=-1
+    orthogonal = 0
+    vector2X = 1
+    vector2Y = 1
+    iterations =0
+    for pairs in vectors:
+        for coords in pairs:
+            vector1X = int(pairs[0])
+            vector1Y = int(pairs[1])
+            if (vector1Y*vector2Y) + (vector1X*vector2X) == 0:
+                orthogonal=orthogonal+1
+            vector2X = vector1X
+            vector2Y = vector1Y
+            iterations = iterations+1
+    if iterations >= len(vectors):
+        print("orthogonal pairs total",orthogonal)
+        return(orthogonal)
 
-primes_generator(29)
+coord_for_calc=input_list()
+orthogonal_number(coord_for_calc)
+
+how_many_nums = input("How many prime numbers would you like to be generated:")
+primes_generator(int(how_many_nums))
